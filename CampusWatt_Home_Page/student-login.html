@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student / Staff Login | CampusWatt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+
+<header>
+    <nav>
+        <a class="logo" href="index.html">
+            <div class="logo-icon">⚡</div>
+            <span>CampusWatt</span>
+        </a>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student-login.html" class="nav-btn active">Student/Staff</a></li>
+            <li><a href="login.html">Admin</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="login-container">
+
+    <div class="login-card">
+
+        <div class="login-icon">🎓</div>
+
+        <span class="section-kicker">STUDENT / STAFF ACCESS</span>
+
+        <h1>Campus Access</h1>
+
+        <p class="login-subtitle">
+            Enter your Jerusalem Engineering College email to continue.
+        </p>
+
+        <form id="studentLoginForm">
+
+            <div class="form-group">
+                <label for="collegeEmail">College Email</label>
+
+                <input
+                    type="email"
+                    id="collegeEmail"
+                    placeholder="official e-mail id"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Continue
+            </button>
+
+            <div id="studentLoginError" class="login-error">
+                Please use your official email address.
+            </div>
+
+        </form>
+
+        <p class="login-note">
+            🔒 Access restricted to college students and staff
+        </p>
+
+    </div>
+
+</main>
+
+<script>
+const studentLoginForm = document.getElementById("studentLoginForm");
+const collegeEmail = document.getElementById("collegeEmail");
+const studentLoginError = document.getElementById("studentLoginError");
+
+studentLoginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = collegeEmail.value.trim().toLowerCase();
+
+    if (email.endsWith("@jerusalemengg.ac.in")) {
+        sessionStorage.setItem("studentLoggedIn", "true");
+        sessionStorage.setItem("collegeEmail", email);
+
+        window.location.href = "student.html";
+    } else {
+        studentLoginError.style.display = "block";
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student / Staff | CampusWatt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <script>
+if (sessionStorage.getItem("studentLoggedIn") !== "true") {
+    window.location.href = "student-login.html";
+}
+</script>
+
+<header>
+    <nav>
+        <a class="logo" href="index.html">
+            <div class="logo-icon">⚡</div>
+            <span>CampusWatt</span>
+        </a>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student.html"class="nav-btn active">Student/Staff</a></li>
+            <li><a href="login.html">Admin</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="student-page">
+
+    <section class="page-hero">
+        <div>
+            <span class="section-kicker">STUDENT / STAFF VIEW</span>
+            <h1>Know Your Classroom.<br><span>Save Energy.</span></h1>
+            <p>
+                Check classroom occupancy, appliance status and energy conditions
+                across the campus.
+            </p>
+        </div>
+    </section>
+
+    <section class="classroom-section">
+
+        <div class="section-heading classroom-heading">
+            <div>
+                <span class="section-kicker">CLASSROOM MONITORING</span>
+                <h2>Classroom Status</h2>
+            </div>
+
+            <div class="search-box">
+                <input
+                    type="text"
+                    id="classroomSearch"
+                    placeholder="Search classroom or lab..."
+                >
+            </div>
+        </div>
+
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="occupied">Occupied</button>
+            <button class="filter-btn" data-filter="empty">Empty</button>
+            <button class="filter-btn" data-filter="saving">Energy Saving</button>
+        </div>
+
+        <div class="classroom-grid" id="classroomGrid">
+
+            <article class="classroom-card" data-status="occupied">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">CLASSROOM</span>
+                        <h3>Room 101</h3>
+                    </div>
+                    <span class="status-badge occupied">Occupied</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>👥</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>32 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>ON</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>ON</strong>
+                    </div>
+                </div>
+
+                <div class="room-message normal">
+                    Classroom is currently in use.
+                </div>
+            </article>
+
+            <article class="classroom-card" data-status="empty saving">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">CLASSROOM</span>
+                        <h3>Room 102</h3>
+                    </div>
+                    <span class="status-badge saving">Energy Saving</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>👥</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>0 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>OFF</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>OFF</strong>
+                    </div>
+                </div>
+
+                <div class="room-message saving-message">
+                    Energy-saving mode is active.
+                </div>
+            </article>
+
+            <article class="classroom-card" data-status="occupied">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">LABORATORY</span>
+                        <h3>Lab 1</h3>
+                    </div>
+                    <span class="status-badge occupied">Occupied</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>👥</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>24 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>ON</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>ON</strong>
+                    </div>
+                </div>
+
+                <div class="room-message normal">
+                    Laboratory is currently in use.
+                </div>
+            </article>
+
+            <article class="classroom-card" data-status="empty saving">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">SEMINAR HALL</span>
+                        <h3>Seminar Hall</h3>
+                    </div>
+                    <span class="status-badge saving">Energy Saving</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>👥</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>0 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>OFF</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>OFF</strong>
+                    </div>
+                </div>
+
+                <div class="room-message saving-message">
+                    No unnecessary energy usage detected.
+                </div>
+            </article>
+
+            <article class="classroom-card" data-status="empty wasting">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">CLASSROOM</span>
+                        <h3>Room 203</h3>
+                    </div>
+                    <span class="status-badge wasting">Wastage</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>⚠️</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>0 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>ON</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>ON</strong>
+                    </div>
+                </div>
+
+                <div class="room-message warning-message">
+                    Energy wastage detected. Please inform the administrator.
+                </div>
+            </article>
+
+            <article class="classroom-card" data-status="occupied">
+                <div class="classroom-top">
+                    <div>
+                        <span class="room-type">CLASSROOM</span>
+                        <h3>Room 204</h3>
+                    </div>
+                    <span class="status-badge occupied">Occupied</span>
+                </div>
+
+                <div class="occupancy">
+                    <span>👥</span>
+                    <div>
+                        <small>Occupancy</small>
+                        <strong>28 Students</strong>
+                    </div>
+                </div>
+
+                <div class="appliance-row">
+                    <div>
+                        <span>🌀</span>
+                        <small>Fan</small>
+                        <strong>ON</strong>
+                    </div>
+                    <div>
+                        <span>💡</span>
+                        <small>Light</small>
+                        <strong>ON</strong>
+                    </div>
+                </div>
+
+                <div class="room-message normal">
+                    Classroom is currently in use.
+                </div>
+            </article>
+            <article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 103</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>30 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty saving">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 104</h3>
+        </div>
+        <span class="status-badge saving">Energy Saving</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>OFF</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message saving-message">Energy-saving mode is active.</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 201</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>35 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty saving">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 202</h3>
+        </div>
+        <span class="status-badge saving">Energy Saving</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>OFF</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message saving-message">Energy-saving mode is active.</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 301</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>29 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty saving">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 302</h3>
+        </div>
+        <span class="status-badge saving">Energy Saving</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>OFF</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message saving-message">Energy-saving mode is active.</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 303</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>31 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty saving">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 304</h3>
+        </div>
+        <span class="status-badge saving">Energy Saving</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>OFF</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message saving-message">Energy-saving mode is active.</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 401</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>27 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty wasting">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 402</h3>
+        </div>
+        <span class="status-badge wasting">Wastage</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message warning-message">
+    Energy wastage detected. Please inform the administrator.
+</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 403</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>26 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Classroom is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty saving">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">CLASSROOM</span>
+            <h3>Room 404</h3>
+        </div>
+        <span class="status-badge saving">Energy Saving</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>OFF</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>OFF</strong>
+        </div>
+    </div>
+    <div class="room-message saving-message">Energy-saving mode is active.</div>
+</article>
+
+<article class="classroom-card" data-status="occupied">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">LABORATORY</span>
+            <h3>Lab 2</h3>
+        </div>
+        <span class="status-badge occupied">Occupied</span>
+    </div>
+    <div class="occupancy">
+        <span>👥</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>22 Students</strong>
+        </div>
+    </div>
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+    <div class="room-message normal">Laboratory is currently in use.</div>
+</article>
+
+<article class="classroom-card" data-status="empty wasting">
+    <div class="classroom-top">
+        <div>
+            <span class="room-type">LABORATORY</span>
+            <h3>Lab 3</h3>
+        </div>
+        <span class="status-badge wasting">Wastage</span>
+    </div>
+
+    <div class="occupancy">
+        <span>⚠️</span>
+        <div>
+            <small>Occupancy</small>
+            <strong>0 Students</strong>
+        </div>
+    </div>
+
+    <div class="appliance-row">
+        <div>
+            <span>🌀</span>
+            <small>Fan</small>
+            <strong>ON</strong>
+        </div>
+        <div>
+            <span>💡</span>
+            <small>Light</small>
+            <strong>ON</strong>
+        </div>
+    </div>
+
+    <div class="room-message warning-message">
+        Energy wastage detected. Please inform the administrator.
+    </div>
+</article>
+
+        </div>
+
+        <div class="no-results" id="noResults">
+            No classroom found.
+        </div>
+
+    </section>
+
+    <section class="awareness-section">
+        <div class="section-heading compact">
+            <span class="section-kicker">ENERGY AWARENESS</span>
+            <h2>Small actions make a difference.</h2>
+            <p>Everyone on campus can contribute to reducing unnecessary energy consumption.</p>
+        </div>
+
+        <div class="awareness-grid">
+            <div class="awareness-card">
+                <div>💡</div>
+                <h3>Switch Off</h3>
+                <p>Report unnecessary appliance usage in empty rooms.</p>
+            </div>
+
+            <div class="awareness-card">
+                <div>☀️</div>
+                <h3>Use Natural Light</h3>
+                <p>Make use of daylight whenever classroom conditions allow.</p>
+            </div>
+
+            <div class="awareness-card">
+                <div>🌱</div>
+                <h3>Build Good Habits</h3>
+                <p>Responsible energy use starts with everyday campus habits.</p>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>CampusWatt</span>
+            </div>
+            <p>Smart Energy Management for a Sustainable Campus.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="student.html">Student/Staff</a>
+            <a href="admin.html">Admin</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div>
+            <h3>CampusWatt</h3>
+            <a href="student.html">Classroom Status</a>
+            <a href="admin.html">Energy Dashboard</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 CampusWatt · Smart Energy Management for a Sustainable Campus</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

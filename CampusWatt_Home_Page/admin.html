@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | CampusWatt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+    <script>
+if (sessionStorage.getItem("adminLoggedIn") !== "true") {
+    window.location.href = "login.html";
+}
+</script>
+
+<header>
+    <nav>
+        <a class="logo" href="index.html">
+            <div class="logo-icon">⚡</div>
+            <span>CampusWatt</span>
+        </a>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student-login.html">Student/Staff</a></li>
+            <li><a href="admin.html"class="nav-btn active">Admin</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+<section class="admin-hero">
+    <div>
+        <span class="section-kicker">ADMIN DASHBOARD</span>
+        <h1>Smart Energy <span>Monitoring.</span></h1>
+        <p>Monitor classroom occupancy, appliance usage and identify unnecessary energy consumption across the campus.</p>
+    </div>
+</section>
+
+<section class="admin-dashboard">
+
+    <div class="admin-stats">
+
+        <div class="admin-stat-card">
+            <span>🏫</span>
+            <small>Total Locations</small>
+            <strong>20</strong>
+            <p>Classrooms & Labs</p>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>👥</span>
+            <small>Occupied</small>
+            <strong>10</strong>
+            <p>Currently in use</p>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>🌱</span>
+            <small>Energy Saving</small>
+            <strong>7</strong>
+            <p>Low energy usage</p>
+        </div>
+
+        <div class="admin-stat-card">
+            <span>⚠️</span>
+            <small>Wastage Alerts</small>
+            <strong>3</strong>
+            <p>Needs attention</p>
+        </div>
+
+    </div>
+
+    <div class="section-heading">
+        <div>
+            <span class="section-kicker">LIVE MONITORING</span>
+            <h2>Energy Status</h2>
+        </div>
+    </div>
+
+    <div class="monitor-table">
+
+        <div class="monitor-row monitor-header">
+            <span>Location</span>
+            <span>Occupancy</span>
+            <span>Fan</span>
+            <span>Light</span>
+            <span>Status</span>
+            <span>Action</span>
+        </div>
+
+        <div class="monitor-row">
+    <span><strong>Room 101</strong><small>Classroom</small></span>
+    <span>32 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 102</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 103</strong><small>Classroom</small></span>
+    <span>30 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 104</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 201</strong><small>Classroom</small></span>
+    <span>35 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 202</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 203</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span id="fan203">ON</span>
+    <span id="light203">ON</span>
+    <span class="table-status wasting-status" id="status203">Wastage</span>
+    <button id="turnOff203" onclick="turnOffAppliances('203')">Turn OFF</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 204</strong><small>Classroom</small></span>
+    <span>28 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 301</strong><small>Classroom</small></span>
+    <span>29 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 302</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 303</strong><small>Classroom</small></span>
+    <span>31 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 304</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 401</strong><small>Classroom</small></span>
+    <span>27 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 402</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span id="fan402">ON</span>
+    <span id="light402">ON</span>
+    <span class="table-status wasting-status" id="status402">Wastage</span>
+    <button id="turnOff402" onclick="turnOffAppliances('402')">Turn OFF</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 403</strong><small>Classroom</small></span>
+    <span>26 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Room 404</strong><small>Classroom</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Lab 1</strong><small>Laboratory</small></span>
+    <span>24 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Lab 2</strong><small>Laboratory</small></span>
+    <span>22 Students</span>
+    <span>ON</span>
+    <span>ON</span>
+    <span class="table-status occupied-status">Occupied</span>
+    <button disabled>In Use</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Lab 3</strong><small>Laboratory</small></span>
+    <span>0 Students</span>
+    <span id="fanlab3">ON</span>
+    <span id="lightlab3">ON</span>
+    <span class="table-status wasting-status" id="statuslab3">Wastage</span>
+    <button id="turnOfflab3" onclick="turnOffAppliances('lab3')">Turn OFF</button>
+</div>
+
+<div class="monitor-row">
+    <span><strong>Seminar Hall</strong><small>Seminar Hall</small></span>
+    <span>0 Students</span>
+    <span>OFF</span>
+    <span>OFF</span>
+    <span class="table-status saving-status">Energy Saving</span>
+    <button disabled>Optimized</button>
+</div>
+
+    </div>
+
+    <div class="alert-card">
+        <div>
+            <span>⚠️</span>
+            <div>
+                <h3>Energy Wastage Detected</h3>
+                <p>Room 203, Room 402 and Lab 3 have appliances running while no students are present.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="successMessage" class="success-message">
+        Appliances turned OFF successfully. Energy wastage reduced.
+    </div>
+
+    <div class="energy-dashboard">
+
+        <div class="section-heading compact">
+            <span class="section-kicker">ENERGY INSIGHTS</span>
+            <h2>Campus Energy Overview</h2>
+            <p>Demo data for project presentation.</p>
+        </div>
+
+        <div class="energy-chart">
+
+            <div class="chart-bar">
+                <span>Mon</span>
+                <div style="height:65%"></div>
+            </div>
+
+            <div class="chart-bar">
+                <span>Tue</span>
+                <div style="height:78%"></div>
+            </div>
+
+            <div class="chart-bar">
+                <span>Wed</span>
+                <div style="height:55%"></div>
+            </div>
+
+            <div class="chart-bar">
+                <span>Thu</span>
+                <div style="height:70%"></div>
+            </div>
+
+            <div class="chart-bar">
+                <span>Fri</span>
+                <div style="height:48%"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="recent-alerts">
+
+        <div class="section-heading compact">
+            <span class="section-kicker">RECENT ALERTS</span>
+            <h2>Energy Monitoring Alerts</h2>
+        </div>
+
+        <div class="recent-alert">
+            <span>🔴</span>
+            <div>
+                <strong>Room 203</strong>
+                <p>Fan and light ON with 0 students.</p>
+            </div>
+        </div>
+
+        <div class="recent-alert">
+            <span>🔴</span>
+            <div>
+                <strong>Room 402</strong>
+                <p>Unnecessary appliance usage detected.</p>
+            </div>
+        </div>
+
+        <div class="recent-alert">
+            <span>🔴</span>
+            <div>
+                <strong>Lab 3</strong>
+                <p>Fan and light ON with 0 students.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-content">
+
+        <div class="footer-brand">
+            <div class="logo">
+                <div class="logo-icon">⚡</div>
+                <span>CampusWatt</span>
+            </div>
+            <p>Smart Energy Management for a Sustainable Campus.</p>
+        </div>
+
+        <div>
+            <h3>Quick Links</h3>
+            <a href="index.html">Home</a>
+            <a href="student.html">Student/Staff</a>
+            <a href="admin.html">Admin</a>
+            <a href="contact.html">Contact</a>
+        </div>
+
+        <div>
+            <h3>CampusWatt</h3>
+            <a href="student.html">Classroom Status</a>
+            <a href="admin.html">Energy Dashboard</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 CampusWatt · Smart Energy Management for a Sustainable Campus</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | CampusWatt</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-page">
+
+<header>
+    <nav>
+        <a class="logo" href="index.html">
+            <div class="logo-icon">⚡</div>
+            <span>CampusWatt</span>
+        </a>
+
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="student-login.html">Student/Staff</a></li>
+            <li><a href="login.html" class="nav-btn active">Admin</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main class="login-container">
+
+    <div class="login-card">
+
+        <div class="login-icon">🔐</div>
+
+        <span class="section-kicker">ADMIN ACCESS</span>
+
+        <h1>Welcome Back</h1>
+
+        <p class="login-subtitle">
+            Sign in to access the CampusWatt admin dashboard.
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    placeholder="Enter username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">
+                Login to Dashboard
+            </button>
+
+            <div id="loginError" class="login-error">
+                Invalid username or password.
+            </div>
+
+        </form>
+
+        <p class="login-note">
+            🔒 Authorized administrators only
+        </p>
+
+    </div>
+
+</main>
+
+<script>
+const loginForm = document.getElementById("loginForm");
+const loginError = document.getElementById("loginError");
+
+loginForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    if (username === "admin" && password === "campus123") {
+        sessionStorage.setItem("adminLoggedIn", "true");
+        window.location.href = "admin.html";
+    } else {
+        loginError.style.display = "block";
+    }
+});
+</script>
+
+</body>
+</html>
